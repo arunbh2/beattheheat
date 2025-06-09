@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Early Warning Systems - Beat The Heat</title>
+    <meta name="description" content="The world's most accessible and practical hub for building and evolving heat early warning systems (HEWS).">
+    
+    <!-- CSS -->
+    <style>
+        /* Design Tokens */
+        :root {
+            --cool-teal: #00A4CC;
+            --heat-red: #FF5A36;
+            --midnight-navy: #12263A;
+            --sand: #F4F1E1;
+            --leaf-green: #2ECC71;
+            --warning-amber: #FFBC40;
+            --disabled-grey: #C9CED6;
+            
+            --text-primary: var(--midnight-navy);
+            --text-secondary: #5A6B7D;
+            --text-muted: #8B9AA8;
+            --text-inverse: #FFFFFF;
+            
+            --bg-primary: #FFFFFF;
+            --bg-secondary: var(--sand);
+            
+            --font-family-primary: 'Poppins', sans-serif;
+            --font-family-body: 'Inter', sans-serif;
+            
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-12: 3rem;
+            --space-16: 4rem;
+            --space-20: 5rem;
+            --space-24: 6rem;
+            
+            --radius-md: 0.5rem;
+            --radius-lg: 1rem;
+            
+            --shadow-md: 0 1px 6px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 2px 4px rgba(0, 0, 0, 0.12);
+            
+            --transition-base: 200ms ease-out;
+        }
+
+        /* Reset and Base */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: var(--font-family-body);
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 164, 204, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-4);
+            max-width: 1320px;
+            margin: 0 auto;
+        }
+
+        .brand-link {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            text-decoration: none;
+            color: var(--text-primary);
+            font-family: var(--font-family-primary);
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .brand-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--heat-red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+            gap: var(--space-6);
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            padding: var(--space-2) var(--space-3);
+            border-radius: var(--radius-md);
+            transition: all var(--transition-base);
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--cool-teal);
+            background: rgba(0, 164, 204, 0.1);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2);
+            padding: 12px 32px;
+            border: none;
+            border-radius: var(--radius-md);
+            font-family: var(--font-family-primary);
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all var(--transition-base);
+            min-height: 44px;
+        }
+
+        .btn-primary {
+            background: var(--heat-red);
+            color: var(--text-inverse);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-primary:hover {
+            background: #E14E2D;
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--cool-teal);
+            border: 2px solid var(--cool-teal);
+        }
+
+        .btn-outline:hover {
+            background: var(--cool-teal);
+            color: var(--text-inverse);
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+            min-height: 100vh;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--warning-amber) 0%, var(--heat-red) 100%);
+            padding: var(--space-24) var(--space-4);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M0,50 Q25,30 50,50 T100,50 L100,100 L0,100 Z" fill="%23ffffff" opacity="0.05"/></svg>') repeat-x;
+            animation: wave 10s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: translateX(0) translateY(0); }
+            50% { transform: translateX(-25px) translateY(-10px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-family: var(--font-family-primary);
+            font-weight: 600;
+            margin-bottom: var(--space-6);
+            color: var(--text-inverse);
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: var(--space-8);
+        }
+
+        .alert-demo {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            margin: var(--space-8) auto;
+            max-width: 500px;
+            backdrop-filter: blur(10px);
+        }
+
+        .alert-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-4);
+        }
+
+        .alert-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--text-inverse);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .alert-title {
+            color: var(--text-inverse);
+            font-weight: 600;
+            font-size: 1.125rem;
+        }
+
+        .alert-message {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.5;
+        }
+
+        /* Content Sections */
+        .container {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 0 var(--space-4);
+        }
+
+        .section {
+            padding: var(--space-24) 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-family: var(--font-family-primary);
+            font-weight: 600;
+            margin-bottom: var(--space-12);
+            color: var(--text-primary);
+        }
+
+        /* EWS Architecture */
+        .ews-architecture {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-8);
+            margin-bottom: var(--space-16);
+        }
+
+        .architecture-step {
+            background: var(--bg-primary);
+            border-radius: var(--radius-lg);
+            padding: var(--space-8);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            position: relative;
+        }
+
+        .architecture-step::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--cool-teal), var(--leaf-green), var(--warning-amber), var(--heat-red));
+            border-radius: var(--radius-lg);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity var(--transition-base);
+        }
+
+        .architecture-step:hover::before {
+            opacity: 1;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--cool-teal);
+            color: var(--text-inverse);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto var(--space-4);
+        }
+
+        .step-title {
+            font-size: 1.25rem;
+            font-family: var(--font-family-primary);
+            font-weight: 600;
+            margin-bottom: var(--space-3);
+            color: var(--text-primary);
+        }
+
+        .step-description {
+            color: var(--text-secondary);
+            margin-bottom: var(--space-4);
+        }
+
+        .step-tools {
+            list-style: none;
+            padding: 0;
+        }
+
+        .step-tools li {
+            background: var(--bg-secondary);
+            padding: var(--space-2) var(--space-3);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-2);
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        /* EWS Builder */
+        .ews-builder {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            padding: var(--space-8);
+            margin-bottom: var(--space-16);
+        }
+
+        .builder-title {
+            text-align: center;
+            font-size: 2rem;
+            font-family: var(--font-family-primary);
+            font-weight: 600;
+            margin-bottom: var(--space-6);
+            color: var(--text-primary);
+        }
+
+        .builder-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-8);
+        }
+
+        .builder-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-6);
+            margin-bottom: var(--space-8);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-label {
+            font-weight: 600;
+            margin-bottom: var(--space-2);
+            color: var(--text-primary);
+        }
+
+        .form-input, .form-select {
+            padding: var(--space-3) var(--space-4);
+            border: 2px solid var(--disabled-grey);
+            border-radius: var(--radius-md);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: border-color var(--transition-base);
+        }
+
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--cool-teal);
+            box-shadow: 0 0 0 3px rgba(0, 164, 204, 0.1);
+        }
+
+        .builder-output {
+            background: var(--bg-primary);
+            border-radius: var(--radius-md);
+            padding: var(--space-6);
+            border: 2px dashed var(--disabled-grey);
+            text-align: center;
+            color: var(--text-muted);
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .builder-output.active {
+            border-color: var(--cool-teal);
+            background: rgba(0, 164, 204, 0.05);
+        }
+
+        /* Case Studies */
+        .case-studies {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--space-8);
+            margin-bottom: var(--space-16);
+        }
+
+        .case-study {
+            background: var(--bg-primary);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: transform var(--transition-base);
+        }
+
+        .case-study:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .case-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--cool-teal), var(--leaf-green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-inverse);
+            font-size: 3rem;
+        }
+
+        .case-content {
+            padding: var(--space-6);
+        }
+
+        .case-title {
+            font-size: 1.25rem;
+            font-family: var(--font-family-primary);
+            font-weight: 600;
+            margin-bottom: var(--space-3);
+            color: var(--text-primary);
+        }
+
+        .case-location {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-bottom: var(--space-4);
+        }
+
+        .case-description {
+            color: var(--text-secondary);
+            margin-bottom: var(--space-6);
+        }
+
+        .case-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-4);
+            margin-bottom: var(--space-6);
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--heat-red);
+            font-family: var(--font-family-primary);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        /* Asset Library */
+        .asset-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: var(--space-6);
+        }
+
+        .asset-card {
+            background: var(--bg-primary);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            transition: transform var(--transition-base);
+        }
+
+        .asset-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .asset-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(0, 164, 204, 0.1);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-4);
+            font-size: 2rem;
+        }
+
+        .asset-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: var(--space-3);
+            color: var(--text-primary);
+        }
+
+        .asset-description {
+            color: var(--text-secondary);
+            margin-bottom: var(--space-4);
+            font-size: 0.875rem;
+        }
+
+        .asset-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-4);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--midnight-navy);
+            color: var(--text-inverse);
+            padding: var(--space-24) 0;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-family: var(--font-family-primary);
+            font-weight: 600;
+            margin-bottom: var(--space-6);
+        }
+
+        .cta-description {
+            font-size: 1.25rem;
+            margin-bottom: var(--space-8);
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: var(--space-4);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--midnight-navy);
+            color: var(--text-inverse);
+            padding: var(--space-20) 0 var(--space-8);
+        }
+
+        .footer-content {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 0 var(--space-4);
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: var(--space-12);
+            margin-bottom: var(--space-12);
+        }
+
+        .footer-brand {
+            margin-bottom: var(--space-4);
+        }
+
+        .footer-mission {
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: var(--space-8);
+        }
+
+        .link-group-title {
+            font-weight: 600;
+            margin-bottom: var(--space-4);
+        }
+
+        .link-list {
+            list-style: none;
+        }
+
+        .link-list li {
+            margin-bottom: var(--space-2);
+        }
+
+        .link-list a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color var(--transition-base);
+        }
+
+        .link-list a:hover {
+            color: var(--cool-teal);
+        }
+
+        .footer-bottom {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 0 var(--space-4);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: var(--space-8);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-copyright {
+            opacity: 0.8;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-list {
+                display: none;
+            }
+            
+            .hero {
+                padding: var(--space-16) var(--space-4);
+            }
+            
+            .ews-architecture {
+                grid-template-columns: 1fr;
+            }
+            
+            .builder-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .case-studies {
+                grid-template-columns: 1fr;
+            }
+            
+            .asset-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                gap: var(--space-4);
+                text-align: center;
+            }
+        }
+    </style>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="brand-link">
+                <div class="brand-icon">🔥</div>
+                <span>Beat The Heat</span>
+            </a>
+            
+            <ul class="nav-list">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="events.html" class="nav-link">Events</a></li>
+                <li><a href="funding.html" class="nav-link">Funding Hub</a></li>
+                <li><a href="resources.html" class="nav-link">Resources</a></li>
+                <li><a href="early-warning.html" class="nav-link active">Early Warning</a></li>
+                <li><a href="alliance.html" class="nav-link">Community</a></li>
+                <li><a href="funding.html#big-bet" class="btn btn-primary">Join Funders Circle</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Early Warning Systems</h1>
+                <p class="hero-subtitle">The world's most accessible and practical hub for building and evolving heat early warning systems that save lives and protect communities.</p>
+                
+                <!-- Live Alert Demo -->
+                <div class="alert-demo">
+                    <div class="alert-header">
+                        <div class="alert-icon">🔥</div>
+                        <div class="alert-title">HEAT ALERT - LEVEL 3</div>
+                    </div>
+                    <div class="alert-message">
+                        Expected temperature: 42°C real-feel in Delhi NCR. Stay indoors 12-4 PM. Drink water every 30 minutes. Free cooling centers open.
+                    </div>
+                </div>
+                
+                <a href="#builder" class="btn btn-outline">Build Your EWS</a>
+            </div>
+        </section>
+
+        <!-- What is Early Warning -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">What is Early Warning?</h2>
+                <p style="text-align: center; color: var(--text-secondary); font-size: 1.125rem; max-width: 800px; margin: 0 auto var(--space-16);">
+                    An early warning system is the most basic tool for saving lives. It provides timely, accurate information about impending heat hazards, enabling communities to take protective action before dangerous conditions arrive.
+                </p>
+
+                <div class="ews-architecture">
+                    <div class="architecture-step">
+                        <div class="step-number">1</div>
+                        <h3 class="step-title">Detection</h3>
+                        <p class="step-description">Monitor weather conditions, temperature trends, and heat indices using multiple data sources.</p>
+                        <ul class="step-tools">
+                            <li>🌡️ Temperature sensors</li>
+                            <li>📡 Satellite data</li>
+                            <li>📊 Weather forecasts</li>
+                            <li>👥 Community observations</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="architecture-step">
+                        <div class="step-number">2</div>
+                        <h3 class="step-title">Risk Analysis</h3>
+                        <p class="step-description">Assess threat levels, identify vulnerable populations, and determine appropriate response measures.</p>
+                        <ul class="step-tools">
+                            <li>🎯 Vulnerability mapping</li>
+                            <li>📈 Risk thresholds</li>
+                            <li>🏥 Health system capacity</li>
+                            <li>🏘️ Community resilience</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="architecture-step">
+                        <div class="step-number">3</div>
+                        <h3 class="step-title">Communication</h3>
+                        <p class="step-description">Disseminate clear, actionable warnings through trusted channels in local languages.</p>
+                        <ul class="step-tools">
+                            <li>📱 SMS alerts</li>
+                            <li>📻 Radio broadcasts</li>
+                            <li>🔊 Community speakers</li>
+                            <li>👥 Peer networks</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="architecture-step">
+                        <div class="step-number">4</div>
+                        <h3 class="step-title">Response</h3>
+                        <p class="step-description">Enable communities and institutions to take protective actions based on warnings received.</p>
+                        <ul class="step-tools">
+                            <li>🏠 Cooling centers</li>
+                            <li>💧 Water distribution</li>
+                            <li>🚑 Emergency services</li>
+                            <li>👨‍⚕️ Health interventions</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EWS Builder Tool -->
+        <section class="section" id="builder">
+            <div class="container">
+                <div class="ews-builder">
+                    <h2 class="builder-title">Build Your Early Warning System</h2>
+                    <p class="builder-subtitle">Use our interactive wizard to design a heat early warning system tailored to your community's needs and resources.</p>
+                    
+                    <div class="builder-form">
+                        <div class="form-group">
+                            <label class="form-label">Community Type</label>
+                            <select class="form-select" id="communityType">
+                                <option value="">Select your community</option>
+                                <option value="urban-slum">Urban Slum</option>
+                                <option value="rural-village">Rural Village</option>
+                                <option value="city-district">City District</option>
+                                <option value="industrial-area">Industrial Area</option>
+                                <option value="school-campus">School Campus</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Population Size</label>
+                            <select class="form-select" id="populationSize">
+                                <option value="">Select population</option>
+                                <option value="small">< 1,000 people</option>
+                                <option value="medium">1,000 - 10,000 people</option>
+                                <option value="large">10,000 - 100,000 people</option>
+                                <option value="xlarge">> 100,000 people</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Available Technology</label>
+                            <select class="form-select" id="technology">
+                                <option value="">Select tech level</option>
+                                <option value="basic">Basic (SMS, Radio)</option>
+                                <option value="moderate">Moderate (Apps, Speakers)</option>
+                                <option value="advanced">Advanced (IoT, Data Analytics)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Local Language</label>
+                            <input type="text" class="form-input" id="language" placeholder="Hindi, Tamil, Bengali, etc.">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Vulnerable Groups</label>
+                            <select class="form-select" id="vulnerableGroups">
+                                <option value="">Primary focus group</option>
+                                <option value="outdoor-workers">Outdoor Workers</option>
+                                <option value="elderly">Elderly Population</option>
+                                <option value="children">Children & Schools</option>
+                                <option value="women">Women & Pregnant</option>
+                                <option value="disabled">Disabled Community</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Lead Organization</label>
+                            <input type="text" class="form-input" id="organization" placeholder="Municipality, NGO, Hospital, etc.">
+                        </div>
+                    </div>
+                    
+                    <div class="builder-output" id="builderOutput">
+                        Complete the form above to generate your customized Early Warning System blueprint
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: var(--space-6);">
+                        <button class="btn btn-primary" onclick="generateEWS()">Generate EWS Blueprint</button>
+                        <button class="btn btn-outline" onclick="downloadBlueprint()" style="margin-left: var(--space-4);">Download Template</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Case Studies -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Early Warning Success Stories</h2>
+                
+                <div class="case-studies">
+                    <div class="case-study">
+                        <div class="case-image">🌆</div>
+                        <div class="case-content">
+                            <h3 class="case-title">Ahmedabad Heat Action Plan</h3>
+                            <div class="case-location">Gujarat, India</div>
+                            <p class="case-description">South Asia's first comprehensive heat early warning system, featuring color-coded alerts and community outreach programs.</p>
+                            <div class="case-stats">
+                                <div class="stat">
+                                    <span class="stat-value">76%</span>
+                                    <span class="stat-label">Mortality Reduction</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-value">6M</span>
+                                    <span class="stat-label">People Covered</span>
+                                </div>
+                            </div>
+                            <a href="#" class="btn btn-outline">Read Case Study</a>
+                        </div>
+                    </div>
+                    
+                    <div class="case-study">
+                        <div class="case-image">🏘️</div>
+                        <div class="case-content">
+                            <h3 class="case-title">SEWA Worker Alert Network</h3>
+                            <div class="case-location">Multiple States, India</div>
+                            <p class="case-description">Peer-to-peer warning system for informal women workers using WhatsApp groups and community coordinators.</p>
+                            <div class="case-stats">
+                                <div class="stat">
+                                    <span class="stat-value">50K</span>
+                                    <span class="stat-label">Workers Protected</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-value">85%</span>
+                                    <span class="stat-label">Alert Reach Rate</span>
+                                </div>
+                            </div>
+                            <a href="#" class="btn btn-outline">Read Case Study</a>
+                        </div>
+                    </div>
+                    
+                    <div class="case-study">
+                        <div class="case-image">🏭</div>
+                        <div class="case-content">
+                            <h3 class="case-title">Industrial Heat Safety Protocol</h3>
+                            <div class="case-location">Maharashtra, India</div>
+                            <p class="case-description">Real-time heat monitoring and automated work schedule adjustments for factory workers during extreme heat events.</p>
+                            <div class="case-stats">
+                                <div class="stat">
+                                    <span class="stat-value">40%</span>
+                                    <span class="stat-label">Illness Reduction</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-value">120</span>
+                                    <span class="stat-label">Factories Covered</span>
+                                </div>
+                            </div>
+                            <a href="#" class="btn btn-outline">Read Case Study</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Asset Library -->
+        <section class="section" style="background: var(--bg-secondary);">
+            <div class="container">
+                <h2 class="section-title">Asset Library</h2>
+                <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--space-12);">
+                    Ready-to-use templates, tools, and resources for implementing early warning systems
+                </p>
+                
+                <div class="asset-grid">
+                    <div class="asset-card">
+                        <div class="asset-icon">📱</div>
+                        <h3 class="asset-title">SMS Alert Templates</h3>
+                        <p class="asset-description">Pre-written heat warning messages in 12 Indian languages with clear action guidance.</p>
+                        <div class="asset-meta">
+                            <span>CSV Format</span>
+                            <span>2.3MB</span>
+                        </div>
+                        <a href="#" class="btn btn-primary">Download</a>
+                    </div>
+                    
+                    <div class="asset-card">
+                        <div class="asset-icon">🔊</div>
+                        <h3 class="asset-title">Audio Alert Library</h3>
+                        <p class="asset-description">Public announcement scripts and siren sounds for community warning systems.</p>
+                        <div class="asset-meta">
+                            <span>MP3 Files</span>
+                            <span>15.7MB</span>
+                        </div>
+                        <a href="#" class="btn btn-primary">Download</a>
+                    </div>
+                    
+                    <div class="asset-card">
+                        <div class="asset-icon">🏠</div>
+                        <h3 class="asset-title">Cooling Center Signage</h3>
+                        <p class="asset-description">Print-ready signage designs for identifying and directing people to cooling centers.</p>
+                        <div class="asset-meta">
+                            <span>PDF/PNG</span>
+                            <span>8.2MB</span>
+                        </div>
+                        <a href="#" class="btn btn-primary">Download</a>
+                    </div>
+                    
+                    <div class="asset-card">
+                        <div class="asset-icon">📊</div>
+                        <h3 class="asset-title">Risk Assessment Tool</h3>
+                        <p class="asset-description">Excel-based calculator for determining heat warning thresholds based on local climate data.</p>
+                        <div class="asset-meta">
+                            <span>Excel File</span>
+                            <span>1.8MB</span>
+                        </div>
+                        <a href="#" class="btn btn-primary">Download</a>
+                    </div>
+                    
+                    <div class="asset-card">
+                        <div class="asset-icon">🎨</div>
+                        <h3 class="asset-title">Social Media Graphics</h3>
+                        <p class="asset-description">Customizable graphics for Facebook, WhatsApp, and Instagram heat safety campaigns.</p>
+                        <div class="asset-meta">
+                            <span>PSD/PNG</span>
+                            <span>23.4MB</span>
+                        </div>
+                        <a href="#" class="btn btn-primary">Download</a>
+                    </div>
+                    
+                    <div class="asset-card">
+                        <div class="asset-icon">📋</div>
+                        <h3 class="asset-title">Implementation Checklist</h3>
+                        <p class="asset-description">Step-by-step checklist for setting up and testing early warning systems.</p>
+                        <div class="asset-meta">
+                            <span>PDF Guide</span>
+                            <span>0.9MB</span>
+                        </div>
+                        <a href="#" class="btn btn-primary">Download</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <h2 class="cta-title">Ready to Save Lives?</h2>
+                <p class="cta-description">Join the global network of communities implementing life-saving heat early warning systems.</p>
+                <div class="cta-buttons">
+                    <a href="#builder" class="btn btn-primary">Build Your EWS</a>
+                    <a href="resources.html" class="btn btn-outline">Access Toolkit</a>
+                    <a href="alliance.html" class="btn btn-outline">Join Community</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div>
+                <div class="footer-brand">
+                    <a href="index.html" class="brand-link">
+                        <div class="brand-icon">🔥</div>
+                        <span>Beat The Heat</span>
+                    </a>
+                </div>
+                <p class="footer-mission">
+                    More than a slogan, Beat The Heat is India's orchestration effort to protect the most vulnerable from extreme heat—through science, finance, design, and local leadership.
+                </p>
+            </div>
+            
+            <div class="footer-links">
+                <div>
+                    <h3 class="link-group-title">Platform</h3>
+                    <ul class="link-list">
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="funding.html">Funding Hub</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="early-warning.html">Early Warning</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="link-group-title">Solutions</h3>
+                    <ul class="link-list">
+                        <li><a href="heat-risk.html">Heat Risk</a></li>
+                        <li><a href="research.html">Research</a></li>
+                        <li><a href="blue-green.html">Blue-Green Infra</a></li>
+                        <li><a href="alliance.html">Global Alliance</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="link-group-title">About</h3>
+                    <ul class="link-list">
+                        <li><a href="about.html">Our Mission</a></li>
+                        <li><a href="stories.html">Impact Stories</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p class="footer-copyright">© 2025 Beat The Heat. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function generateEWS() {
+            const communityType = document.getElementById('communityType').value;
+            const populationSize = document.getElementById('populationSize').value;
+            const technology = document.getElementById('technology').value;
+            const language = document.getElementById('language').value;
+            const vulnerableGroups = document.getElementById('vulnerableGroups').value;
+            const organization = document.getElementById('organization').value;
+            
+            if (!communityType || !populationSize || !technology) {
+                alert('Please fill in the required fields: Community Type, Population Size, and Technology Level');
+                return;
+            }
+            
+            const output = document.getElementById('builderOutput');
+            output.classList.add('active');
+            
+            // Generate customized blueprint
+            let blueprint = `
+                <div style="text-align: left; padding: 2rem;">
+                    <h3 style="color: var(--cool-teal); margin-bottom: 1rem;">🎯 Your Customized EWS Blueprint</h3>
+                    <div style="background: rgba(0,164,204,0.1); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                        <strong>Community:</strong> ${communityType.replace('-', ' ')} | 
+                        <strong>Population:</strong> ${populationSize} | 
+                        <strong>Technology:</strong> ${technology}
+                    </div>
+                    
+                    <h4>📡 Recommended Detection Methods:</h4>
+                    <ul style="margin-bottom: 1rem;">
+            `;
+            
+            if (technology === 'advanced') {
+                blueprint += `<li>IoT temperature sensors with real-time monitoring</li>
+                              <li>Integration with IMD weather APIs</li>
+                              <li>Machine learning for predictive alerts</li>`;
+            } else if (technology === 'moderate') {
+                blueprint += `<li>Manual weather station readings</li>
+                              <li>SMS-based data collection</li>
+                              <li>Community weather apps</li>`;
+            } else {
+                blueprint += `<li>Radio weather updates</li>
+                              <li>Community observers</li>
+                              <li>Simple thermometer networks</li>`;
+            }
+            
+            blueprint += `
+                    </ul>
+                    
+                    <h4>📢 Alert Dissemination Strategy:</h4>
+                    <ul style="margin-bottom: 1rem;">
+                        <li>Primary: SMS alerts in ${language || 'local language'}</li>
+                        <li>Secondary: Community speakers/radio</li>
+                        <li>Tertiary: Door-to-door by volunteers</li>
+                    </ul>
+                    
+                    <h4>🎯 Special Focus: ${vulnerableGroups ? vulnerableGroups.replace('-', ' ') : 'All vulnerable groups'}</h4>
+                    <p style="margin-bottom: 1rem;">Tailored messaging and response protocols for your priority population.</p>
+                    
+                    <div style="background: rgba(255,90,54,0.1); padding: 1rem; border-radius: 8px;">
+                        <strong>Next Steps:</strong> Download the full implementation guide and connect with ${organization || 'local partners'} to begin setup.
+                    </div>
+                </div>
+            `;
+            
+            output.innerHTML = blueprint;
+        }
+        
+        function downloadBlueprint() {
+            alert('Blueprint template download will be available soon. Please check back or contact us for early access.');
+        }
+        
+        // Form interactivity
+        document.querySelectorAll('.form-select, .form-input').forEach(element => {
+            element.addEventListener('change', function() {
+                // Auto-generate as user fills form
+                if (document.getElementById('communityType').value && 
+                    document.getElementById('populationSize').value && 
+                    document.getElementById('technology').value) {
+                    // Show preview message
+                    const output = document.getElementById('builderOutput');
+                    output.innerHTML = '<div style="color: var(--cool-teal); font-weight: 600;">Ready to generate your EWS blueprint! Click "Generate" below.</div>';
+                    output.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
