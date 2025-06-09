@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Commons - Beat The Heat</title>
+    <meta name="description" content="An open-access, curated library for the world's best research, practice, tools, and toolkits on heat resilience.">
+    
+    <!-- CSS -->
+    <style>
+        /* Design Tokens */
+        :root {
+            --cool-teal: #00A4CC;
+            --heat-red: #FF5A36;
+            --midnight-navy: #12263A;
+            --sand: #F4F1E1;
+            --leaf-green: #2ECC71;
+            --warning-amber: #FFBC40;
+            --disabled-grey: #C9CED6;
+            
+            --text-primary: var(--midnight-navy);
+            --text-secondary: #5A6B7D;
+            --text-muted: #8B9AA8;
+            --text-inverse: #FFFFFF;
+            
+            --bg-primary: #FFFFFF;
+            --bg-secondary: var(--sand);
+            
+            --font-family-primary: 'Poppins', sans-serif;
+            --font-family-body: 'Inter', sans-serif;
+            
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-6: 1.5rem;
+            --space-8: 2rem;
+            --space-12: 3rem;
+            --space-16: 4rem;
+            --space-20: 5rem;
+            --space-24: 6rem;
+            
+            --radius-md: 0.5rem;
+            --radius-lg: 1rem;
+            
+            --shadow-md: 0 1px 6px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 2px 4px rgba(0, 0, 0, 0.12);
+            
+            --transition-base: 200ms ease-out;
+        }
+
+        /* Reset and Base */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: var(--font-family-body);
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 164, 204, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-4);
+            max-width: 1320px;
+            margin: 0 auto;
+        }
+
+        .brand-link {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            text-decoration: none;
+            color: var(--text-primary);
+            font-family: var(--font-family-primary);
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .brand-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--heat-red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+            gap: var(--space-6);
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            padding: var(--space-2) var(--space-3);
+            border-radius: var(--radius-md);
+            transition: all var(--transition-base);
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--cool-teal);
+            background: rgba(0, 164, 204, 0.1);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2);
+            padding: 12px 32px;
+            border: none;
+            border-radius: var(--radius-md);
+            font-family: var(--font-family-primary);
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all var(--transition-base);
+            min-height: 44px;
+        }
+
+        .btn-primary {
+            background: var(--heat-red);
+            color: var(--text-inverse);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-primary:hover {
+            background: #E14E2D;
+            transform: translateY(-1px);
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+            min-height: 100vh;
+        }
+
+        .hero {
+            background: var(--bg-secondary);
+            padding: var(--space-24) var(--space-4);
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-family: var(--font-family-primary);
+            font-weight: 600;
+            margin-bottom: var(--space-6);
+            color: var(--text-primary);
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-8);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .search-box {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: var(--space-4) var(--space-6);
+            font-size: 1.125rem;
+            border: 2px solid var(--disabled-grey);
+            border-radius: var(--radius-lg);
+            background: var(--bg-primary);
+            transition: border-color var(--transition-base);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--cool-teal);
+            box-shadow: 0 0 0 3px rgba(0, 164, 204, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: var(--space-4);
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 1.5rem;
+        }
+
+        /* Content Area */
+        .content-area {
+            display: flex;
+            max-width: 1320px;
+            margin: 0 auto;
+            gap: var(--space-8);
+            padding: var(--space-8) var(--space-4);
+        }
+
+        .sidebar {
+            width: 280px;
+            flex-shrink: 0;
+        }
+
+        .main-content {
+            flex: 1;
+        }
+
+        /* Sidebar */
+        .filter-section {
+            background: var(--bg-primary);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            margin-bottom: var(--space-6);
+            box-shadow: var(--shadow-md);
+        }
+
+        .filter-title {
+            font-family: var(--font-family-primary);
+            font-weight: 600;
+            margin-bottom: var(--space-4);
+            color: var(--text-primary);
+        }
+
+        .filter-group {
+            margin-bottom: var(--space-6);
+        }
+
+        .filter-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--space-2);
+        }
+
+        .filter-checkbox {
+            margin-right: var(--space-3);
+            accent-color: var(--cool-teal);
+        }
+
+        .filter-label {
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: color var(--transition-base);
+        }
+
+        .filter-label:hover {
+            color: var(--text-primary);
+        }
+
+        .category-nav {
+            list-style: none;
+        }
+
+        .category-nav li {
+            margin-bottom: var(--space-2);
+        }
+
+        .category-link {
+            display: flex;
+            align-items: center;
+            padding: var(--space-3) var(--space-4);
+            text-decoration: none;
+            color: var(--text-secondary);
+            border-radius: var(--radius-md);
+            transition: all var(--transition-base);
+        }
+
+        .category-link:hover, .category-link.active {
+            background: rgba(0, 164, 204, 0.1);
+            color: var(--cool-teal);
+        }
+
+        .category-icon {
+            margin-right: var(--space-3);
+            font-size: 1.25rem;
+        }
+
+        /* Main Content */
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-8);
+        }
+
+        .results-count {
+            color: var(--text-muted);
+        }
+
+        .sort-controls {
+            display: flex;
+            gap: var(--space-4);
+            align-items: center;
+        }
+
+        .sort-select {
+            padding: var(--space-2) var(--space-4);
+            border: 1px solid var(--disabled-grey);
+            border-radius: var(--radius-md);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        .view-toggle {
+            display: flex;
+            border: 1px solid var(--disabled-grey);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+        }
+
+        .view-btn {
+            padding: var(--space-2) var(--space-3);
+            border: none;
+            background: var(--bg-primary);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all var(--transition-base);
+        }
+
+        .view-btn.active {
+            background: var(--cool-teal);
+            color: var(--text-inverse);
+        }
+
+        /* Resource Grid */
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: var(--space-6);
+            margin-bottom: var(--space-8);
+        }
+
+        .resource-card {
+            background: var(--bg-primary);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-base);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .resource-header {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-4);
+            margin-bottom: var(--space-4);
+        }
+
+        .resource-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .resource-icon.pdf {
+            background: rgba(255, 90, 54, 0.1);
+            color: var(--heat-red);
+        }
+
+        .resource-icon.tool {
+            background: rgba(0, 164, 204, 0.1);
+            color: var(--cool-teal);
+        }
+
+        .resource-icon.video {
+            background: rgba(255, 188, 64, 0.1);
+            color: var(--warning-amber);
+        }
+
+        .resource-icon.dataset {
+            background: rgba(46, 204, 113, 0.1);
+            color: var(--leaf-green);
+        }
+
+        .resource-meta {
+            flex: 1;
+        }
+
+        .resource-title {
+            font-family: var(--font-family-primary);
+            font-weight: 600;
+            margin-bottom: var(--space-2);
+            color: var(--text-primary);
+            line-height: 1.4;
+        }
+
+        .resource-author {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-bottom: var(--space-1);
+        }
+
+        .resource-date {
+            color: var(--text-muted);
+            font-size: 0.75rem;
+        }
+
+        .resource-description {
+            color: var(--text-secondary);
+            margin-bottom: var(--space-4);
+            line-height: 1.5;
+            flex: 1;
+        }
+
+        .resource-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-2);
+            margin-bottom: var(--space-4);
+        }
+
+        .tag {
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            padding: var(--space-1) var(--space-3);
+            border-radius: var(--radius-md);
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .resource-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .download-count {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .btn-sm {
+            padding: var(--space-2) var(--space-4);
+            font-size: 0.875rem;
+            min-height: 36px;
+        }
+
+        /* Featured Section */
+        .featured-section {
+            background: var(--midnight-navy);
+            color: var(--text-inverse);
+            padding: var(--space-24) 0;
+            margin: var(--space-24) 0;
+        }
+
+        .featured-content {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 0 var(--space-4);
+        }
+
+        .featured-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-family: var(--font-family-primary);
+            font-weight: 600;
+            margin-bottom: var(--space-12);
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-8);
+        }
+
+        .featured-item {
+            text-align: center;
+        }
+
+        .featured-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(0, 164, 204, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-4);
+            font-size: 2rem;
+        }
+
+        .featured-item-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: var(--space-3);
+        }
+
+        .featured-description {
+            opacity: 0.9;
+            margin-bottom: var(--space-4);
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-2);
+            margin-top: var(--space-8);
+        }
+
+        .page-btn {
+            padding: var(--space-2) var(--space-4);
+            border: 1px solid var(--disabled-grey);
+            background: var(--bg-primary);
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: var(--radius-md);
+            transition: all var(--transition-base);
+        }
+
+        .page-btn:hover, .page-btn.active {
+            background: var(--cool-teal);
+            color: var(--text-inverse);
+            border-color: var(--cool-teal);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--midnight-navy);
+            color: var(--text-inverse);
+            padding: var(--space-20) 0 var(--space-8);
+        }
+
+        .footer-content {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 0 var(--space-4);
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: var(--space-12);
+            margin-bottom: var(--space-12);
+        }
+
+        .footer-brand {
+            margin-bottom: var(--space-4);
+        }
+
+        .footer-mission {
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: var(--space-8);
+        }
+
+        .link-group-title {
+            font-weight: 600;
+            margin-bottom: var(--space-4);
+        }
+
+        .link-list {
+            list-style: none;
+        }
+
+        .link-list li {
+            margin-bottom: var(--space-2);
+        }
+
+        .link-list a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color var(--transition-base);
+        }
+
+        .link-list a:hover {
+            color: var(--cool-teal);
+        }
+
+        .footer-bottom {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 0 var(--space-4);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: var(--space-8);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-copyright {
+            opacity: 0.8;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 968px) {
+            .content-area {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                order: 2;
+            }
+            
+            .main-content {
+                order: 1;
+            }
+            
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .content-header {
+                flex-direction: column;
+                gap: var(--space-4);
+                align-items: stretch;
+            }
+            
+            .sort-controls {
+                justify-content: space-between;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-list {
+                display: none;
+            }
+            
+            .hero {
+                padding: var(--space-16) var(--space-4);
+            }
+            
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                gap: var(--space-4);
+                text-align: center;
+            }
+        }
+    </style>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="brand-link">
+                <div class="brand-icon">🔥</div>
+                <span>Beat The Heat</span>
+            </a>
+            
+            <ul class="nav-list">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="events.html" class="nav-link">Events</a></li>
+                <li><a href="funding.html" class="nav-link">Funding Hub</a></li>
+                <li><a href="resources.html" class="nav-link active">Resources</a></li>
+                <li><a href="early-warning.html" class="nav-link">Early Warning</a></li>
+                <li><a href="alliance.html" class="nav-link">Community</a></li>
+                <li><a href="funding.html#big-bet" class="btn btn-primary">Join Funders Circle</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1 class="hero-title">Knowledge Commons</h1>
+            <p class="hero-subtitle">An open-access, curated library for the world's best research, practice, tools, and toolkits on heat resilience.</p>
+            
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="Search for heat resilience resources, tools, and research..." id="searchInput">
+                <div class="search-icon">🔍</div>
+            </div>
+        </section>
+
+        <!-- Content Area -->
+        <div class="content-area">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="filter-section">
+                    <h3 class="filter-title">Categories</h3>
+                    <ul class="category-nav">
+                        <li><a href="#" class="category-link active"><span class="category-icon">📋</span>All Resources</a></li>
+                        <li><a href="#" class="category-link"><span class="category-icon">🌍</span>Global Reports</a></li>
+                        <li><a href="#" class="category-link"><span class="category-icon">🔧</span>Toolkits & Guidance</a></li>
+                        <li><a href="#" class="category-link"><span class="category-icon">💡</span>Innovations</a></li>
+                        <li><a href="#" class="category-link"><span class="category-icon">🏛️</span>Indigenous Knowledge</a></li>
+                        <li><a href="#" class="category-link"><span class="category-icon">🔬</span>Research Studies</a></li>
+                        <li><a href="#" class="category-link"><span class="category-icon">📖</span>Explainers</a></li>
+                    </ul>
+                </div>
+
+                <div class="filter-section">
+                    <h3 class="filter-title">Format</h3>
+                    <div class="filter-group">
+                        <div class="filter-item">
+                            <input type="checkbox" id="pdf" class="filter-checkbox">
+                            <label for="pdf" class="filter-label">PDF Documents</label>
+                        </div>
+                        <div class="filter-item">
+                            <input type="checkbox" id="tool" class="filter-checkbox">
+                            <label for="tool" class="filter-label">Interactive Tools</label>
+                        </div>
+                        <div class="filter-item">
+                            <input type="checkbox" id="video" class="filter-checkbox">
+                            <label for="video" class="filter-label">Videos</label>
+                        </div>
+                        <div class="filter-item">
+                            <input type="checkbox" id="dataset" class="filter-checkbox">
+                            <label for="dataset" class="filter-label">Datasets</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <h3 class="filter-title">Scale</h3>
+                    <div class="filter-group">
+                        <div class="filter-item">
+                            <input type="checkbox" id="individual" class="filter-checkbox">
+                            <label for="individual" class="filter-label">Individual</label>
+                        </div>
+                        <div class="filter-item">
+                            <input type="checkbox" id="building" class="filter-checkbox">
+                            <label for="building" class="filter-label">Building</label>
+                        </div>
+                        <div class="filter-item">
+                            <input type="checkbox" id="neighborhood" class="filter-checkbox">
+                            <label for="neighborhood" class="filter-label">Neighborhood</label>
+                        </div>
+                        <div class="filter-item">
+                            <input type="checkbox" id="city" class="filter-checkbox">
+                            <label for="city" class="filter-label">City</label>
+                        </div>
+                        <div class="filter-item">
+                            <input type="checkbox" id="country" class="filter-checkbox">
+                            <label for="country" class="filter-label">Country</label>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <div class="content-header">
+                    <div class="results-count">Showing 24 of 156 resources</div>
+                    <div class="sort-controls">
+                        <select class="sort-select">
+                            <option>Most Recent</option>
+                            <option>Most Downloaded</option>
+                            <option>Alphabetical</option>
+                            <option>Relevance</option>
+                        </select>
+                        <div class="view-toggle">
+                            <button class="view-btn active">⊞</button>
+                            <button class="view-btn">☰</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resource-grid">
+                    <!-- IPCC Report -->
+                    <div class="resource-card">
+                        <div class="resource-header">
+                            <div class="resource-icon pdf">📄</div>
+                            <div class="resource-meta">
+                                <h3 class="resource-title">Climate Change 2022: Impacts, Adaptation and Vulnerability</h3>
+                                <div class="resource-author">IPCC Working Group II</div>
+                                <div class="resource-date">April 2022</div>
+                            </div>
+                        </div>
+                        <p class="resource-description">Comprehensive assessment of climate change impacts, adaptation options, and human and ecosystem vulnerability with specific chapters on heat-related risks.</p>
+                        <div class="resource-tags">
+                            <span class="tag">Global</span>
+                            <span class="tag">Policy</span>
+                            <span class="tag">Adaptation</span>
+                        </div>
+                        <div class="resource-footer">
+                            <div class="download-count">📥 2,847 downloads</div>
+                            <a href="#" class="btn btn-primary btn-sm">Download</a>
+                        </div>
+                    </div>
+
+                    <!-- Heat Action Plan Template -->
+                    <div class="resource-card">
+                        <div class="resource-header">
+                            <div class="resource-icon tool">🔧</div>
+                            <div class="resource-meta">
+                                <h3 class="resource-title">Heat Action Plan Development Toolkit</h3>
+                                <div class="resource-author">NDMA & NIUA</div>
+                                <div class="resource-date">March 2025</div>
+                            </div>
+                        </div>
+                        <p class="resource-description">Step-by-step guidance for developing city-level Heat Action Plans with templates, checklists, and vulnerability assessment tools.</p>
+                        <div class="resource-tags">
+                            <span class="tag">India</span>
+                            <span class="tag">Cities</span>
+                            <span class="tag">Planning</span>
+                        </div>
+                        <div class="resource-footer">
+                            <div class="download-count">📥 1,523 downloads</div>
+                            <a href="#" class="btn btn-primary btn-sm">Access Tool</a>
+                        </div>
+                    </div>
+
+                    <!-- Cool Roofs Innovation -->
+                    <div class="resource-card">
+                        <div class="resource-header">
+                            <div class="resource-icon video">🎥</div>
+                            <div class="resource-meta">
+                                <h3 class="resource-title">Cool Roofs Coalition: Scaling Reflective Surfaces</h3>
+                                <div class="resource-author">Clean Cooling Alliance</div>
+                                <div class="resource-date">January 2025</div>
+                            </div>
+                        </div>
+                        <p class="resource-description">Case study documenting the implementation of cool roof technologies across 12 Indian cities, including cost-benefit analysis and implementation challenges.</p>
+                        <div class="resource-tags">
+                            <span class="tag">Innovation</span>
+                            <span class="tag">Urban</span>
+                            <span class="tag">Technology</span>
+                        </div>
+                        <div class="resource-footer">
+                            <div class="download-count">👁️ 892 views</div>
+                            <a href="#" class="btn btn-primary btn-sm">Watch</a>
+                        </div>
+                    </div>
+
+                    <!-- SEWA Heat Insurance -->
+                    <div class="resource-card">
+                        <div class="resource-header">
+                            <div class="resource-icon pdf">📄</div>
+                            <div class="resource-meta">
+                                <h3 class="resource-title">Parametric Heat Insurance for Informal Workers</h3>
+                                <div class="resource-author">SEWA & ILO</div>
+                                <div class="resource-date">December 2024</div>
+                            </div>
+                        </div>
+                        <p class="resource-description">Detailed evaluation of SEWA's pioneering heat insurance program covering 50,000 informal women workers in Gujarat, with replication guidelines.</p>
+                        <div class="resource-tags">
+                            <span class="tag">Finance</span>
+                            <span class="tag">Workers</span>
+                            <span class="tag">Insurance</span>
+                        </div>
+                        <div class="resource-footer">
+                            <div class="download-count">📥 734 downloads</div>
+                            <a href="#" class="btn btn-primary btn-sm">Download</a>
+                        </div>
+                    </div>
+
+                    <!-- Urban Heat Mapping Dataset -->
+                    <div class="resource-card">
+                        <div class="resource-header">
+                            <div class="resource-icon dataset">📊</div>
+                            <div class="resource-meta">
+                                <h3 class="resource-title">Urban Heat Island Dataset for Indian Cities</h3>
+                                <div class="resource-author">IIT Bombay & CEPT</div>
+                                <div class="resource-date">November 2024</div>
+                            </div>
+                        </div>
+                        <p class="resource-description">Comprehensive land surface temperature data for 50 Indian cities (2000-2024) with neighborhood-level heat vulnerability indices.</p>
+                        <div class="resource-tags">
+                            <span class="tag">Data</span>
+                            <span class="tag">Mapping</span>
+                            <span class="tag">UHI</span>
+                        </div>
+                        <div class="resource-footer">
+                            <div class="download-count">📥 1,156 downloads</div>
+                            <a href="#" class="btn btn-primary btn-sm">Access Data</a>
+                        </div>
+                    </div>
+
+                    <!-- Community Knowledge -->
+                    <div class="resource-card">
+                        <div class="resource-header">
+                            <div class="resource-icon tool">🏛️</div>
+                            <div class="resource-meta">
+                                <h3 class="resource-title">Traditional Cooling Practices in Urban Slums</h3>
+                                <div class="resource-author">Practical Action & Community Partners</div>
+                                <div class="resource-date">October 2024</div>
+                            </div>
+                        </div>
+                        <p class="resource-description">Community-documented indigenous cooling strategies from informal settlements in Delhi, Mumbai, and Chennai with implementation guides.</p>
+                        <div class="resource-tags">
+                            <span class="tag">Community</span>
+                            <span class="tag">Indigenous</span>
+                            <span class="tag">Adaptation</span>
+                        </div>
+                        <div class="resource-footer">
+                            <div class="download-count">📥 445 downloads</div>
+                            <a href="#" class="btn btn-primary btn-sm">Explore</a>
+                        </div>
+                    </div>
+
+                    <!-- Heat-Health Explainer -->
+                    <div class="resource-card">
+                        <div class="resource-header">
+                            <div class="resource-icon video">📖</div>
+                            <div class="resource-meta">
+                                <h3 class="resource-title">Understanding Wet Bulb Temperature</h3>
+                                <div class="resource-author">WHO Global Heat Health Information Network</div>
+                                <div class="resource-date">September 2024</div>
+                            </div>
+                        </div>
+                        <p class="resource-description">Simple, visual explainer on wet bulb temperature and why it matters more than air temperature for human health and survival.</p>
+                        <div class="resource-tags">
+                            <span class="tag">Health</span>
+                            <span class="tag">Primer</span>
+                            <span class="tag">Climate</span>
+                        </div>
+                        <div class="resource-footer">
+                            <div class="download-count">👁️ 3,221 views</div>
+                            <a href="#" class="btn btn-primary btn-sm">Read</a>
+                        </div>
+                    </div>
+
+                    <!-- Early Warning System -->
+                    <div class="resource-card">
+                        <div class="resource-header">
+                            <div class="resource-icon tool">🔧</div>
+                            <div class="resource-meta">
+                                <h3 class="resource-title">Community Early Warning System Builder</h3>
+                                <div class="resource-author">Red Cross Climate Centre</div>
+                                <div class="resource-date">August 2024</div>
+                            </div>
+                        </div>
+                        <p class="resource-description">Interactive tool for designing heat early warning systems tailored to local communities, with SMS templates and communication guidelines.</p>
+                        <div class="resource-tags">
+                            <span class="tag">Early Warning</span>
+                            <span class="tag">Community</span>
+                            <span class="tag">Tool</span>
+                        </div>
+                        <div class="resource-footer">
+                            <div class="download-count">📥 667 downloads</div>
+                            <a href="#" class="btn btn-primary btn-sm">Use Tool</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <a href="#" class="page-btn">← Previous</a>
+                    <a href="#" class="page-btn active">1</a>
+                    <a href="#" class="page-btn">2</a>
+                    <a href="#" class="page-btn">3</a>
+                    <a href="#" class="page-btn">4</a>
+                    <a href="#" class="page-btn">5</a>
+                    <a href="#" class="page-btn">Next →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Featured Section -->
+        <section class="featured-section">
+            <div class="featured-content">
+                <h2 class="featured-title">Featured Collections</h2>
+                <div class="featured-grid">
+                    <div class="featured-item">
+                        <div class="featured-icon">🏆</div>
+                        <h3 class="featured-item-title">Best Practice Library</h3>
+                        <p class="featured-description">Curated collection of proven heat resilience interventions from around the world</p>
+                        <a href="#" class="btn btn-primary">Explore Collection</a>
+                    </div>
+                    <div class="featured-item">
+                        <div class="featured-icon">🚀</div>
+                        <h3 class="featured-item-title">Innovation Showcase</h3>
+                        <p class="featured-description">Latest technological and social innovations in heat adaptation and cooling solutions</p>
+                        <a href="#" class="btn btn-primary">View Innovations</a>
+                    </div>
+                    <div class="featured-item">
+                        <div class="featured-icon">📊</div>
+                        <h3 class="featured-item-title">Data Repository</h3>
+                        <p class="featured-description">Open datasets on heat exposure, vulnerability, and resilience metrics across Indian cities</p>
+                        <a href="#" class="btn btn-primary">Access Data</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div>
+                <div class="footer-brand">
+                    <a href="index.html" class="brand-link">
+                        <div class="brand-icon">🔥</div>
+                        <span>Beat The Heat</span>
+                    </a>
+                </div>
+                <p class="footer-mission">
+                    More than a slogan, Beat The Heat is India's orchestration effort to protect the most vulnerable from extreme heat—through science, finance, design, and local leadership.
+                </p>
+            </div>
+            
+            <div class="footer-links">
+                <div>
+                    <h3 class="link-group-title">Platform</h3>
+                    <ul class="link-list">
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="funding.html">Funding Hub</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="early-warning.html">Early Warning</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="link-group-title">Solutions</h3>
+                    <ul class="link-list">
+                        <li><a href="heat-risk.html">Heat Risk</a></li>
+                        <li><a href="research.html">Research</a></li>
+                        <li><a href="blue-green.html">Blue-Green Infra</a></li>
+                        <li><a href="alliance.html">Global Alliance</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="link-group-title">About</h3>
+                    <ul class="link-list">
+                        <li><a href="about.html">Our Mission</a></li>
+                        <li><a href="stories.html">Impact Stories</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p class="footer-copyright">© 2025 Beat The Heat. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const resourceCards = document.querySelectorAll('.resource-card');
+            
+            resourceCards.forEach(card => {
+                const title = card.querySelector('.resource-title').textContent.toLowerCase();
+                const description = card.querySelector('.resource-description').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        // Category navigation
+        document.querySelectorAll('.category-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.category-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // View toggle
+        document.querySelectorAll('.view-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const grid = document.querySelector('.resource-grid');
+                if (this.textContent === '☰') {
+                    grid.style.gridTemplateColumns = '1fr';
+                } else {
+                    grid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(350px, 1fr))';
+                }
+            });
+        });
+
+        // Filter functionality
+        document.querySelectorAll('.filter-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                // Add filter logic here
+                console.log('Filter changed:', this.id, this.checked);
+            });
+        });
+    </script>
+</body>
+</html>
