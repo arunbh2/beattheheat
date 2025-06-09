@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Heat Events & Conferences - Beat The Heat</title>
+    <meta name="description" content="Discover upcoming heat resilience events, conferences, webinars, and workshops. Connect with the global community working on climate adaptation and extreme heat solutions.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;600&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/tokens.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/events.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+</head>
+<body>
+    <!-- Skip to content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Header -->
+    <header class="header" role="banner">
+        <nav class="nav-container" role="navigation" aria-label="Main navigation">
+            <div class="nav-brand">
+                <a href="index.html" class="brand-link">
+                    <img src="assets/images/flame-icon.svg" alt="" class="brand-icon" aria-hidden="true">
+                    <span class="brand-text">Beat The Heat</span>
+                </a>
+            </div>
+            
+            <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <div class="nav-menu" id="nav-menu">
+                <ul class="nav-list" role="menubar">
+                    <li class="nav-item" role="none">
+                        <a href="index.html" class="nav-link" role="menuitem">Home</a>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a href="events.html" class="nav-link active" role="menuitem" aria-current="page">Events</a>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a href="funding.html" class="nav-link" role="menuitem">Funding Hub</a>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a href="resources.html" class="nav-link" role="menuitem">Resources</a>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a href="early-warning.html" class="nav-link" role="menuitem">Early Warning</a>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a href="forum.html" class="nav-link" role="menuitem">Community</a>
+                    </li>
+                </ul>
+                
+                <div class="nav-cta">
+                    <a href="index.html#big-bet" class="btn btn-primary">Join Funders Circle</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Heat Emergency Ribbon -->
+    <div class="heat-ribbon" role="alert" aria-live="polite" id="heat-ribbon">
+        <div class="ribbon-content">
+            <span class="flame-icon" aria-hidden="true">🔥</span>
+            <span class="ribbon-text">17 States on Red Alert | 42°C Real-Feel in Nagpur</span>
+            <a href="index.html#heat-map" class="ribbon-link">View Live Heat Map ›</a>
+        </div>
+    </div>
+    
+    <main id="main-content" role="main">
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="container">
+                <div class="header-content">
+                    <h1 class="page-title">Global Heat Events</h1>
+                    <p class="page-description">Connect with the worldwide community tackling extreme heat through conferences, workshops, webinars, and collaborative events.</p>
+                    
+                    <div class="page-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">47</span>
+                            <span class="stat-label">Upcoming Events</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">12</span>
+                            <span class="stat-label">Countries</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">8,200+</span>
+                            <span class="stat-label">Expected Attendees</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Event Filters -->
+        <section class="events-controls">
+            <div class="container">
+                <div class="controls-wrapper">
+                    <div class="filter-section">
+                        <h3 class="filter-title">Filter Events</h3>
+                        <div class="filter-groups">
+                            <div class="filter-group">
+                                <label class="filter-label">Type</label>
+                                <div class="filter-chips">
+                                    <button class="filter-btn active" data-filter="all" data-type="type">All</button>
+                                    <button class="filter-btn" data-filter="summits" data-type="type">Summits</button>
+                                    <button class="filter-btn" data-filter="webinars" data-type="type">Webinars</button>
+                                    <button class="filter-btn" data-filter="workshops" data-type="type">Workshops</button>
+                                    <button class="filter-btn" data-filter="grants" data-type="type">Grant Deadlines</button>
+                                </div>
+                            </div>
+                            
+                            <div class="filter-group">
+                                <label class="filter-label">Region</label>
+                                <div class="filter-chips">
+                                    <button class="filter-btn active" data-filter="all" data-type="region">All</button>
+                                    <button class="filter-btn" data-filter="india" data-type="region">India</button>
+                                    <button class="filter-btn" data-filter="south-asia" data-type="region">South Asia</button>
+                                    <button class="filter-btn" data-filter="global" data-type="region">Global</button>
+                                    <button class="filter-btn" data-filter="online" data-type="region">Online</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="view-toggles">
+                        <button class="view-btn active" data-view="list" aria-label="List view">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/>
+                            </svg>
+                        </button>
+                        <button class="view-btn" data-view="calendar" aria-label="Calendar view">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="search-section">
+                    <div class="search-box">
+                        <label for="event-search" class="sr-only">Search events</label>
+                        <input type="search" id="event-search" placeholder="Search events, organizations, or topics..." class="search-input">
+                        <button class="search-btn" aria-label="Search">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Events List -->
+        <section class="events-list-section">
+            <div class="container">
+                <div class="events-grid" id="events-grid">
+                    <!-- Featured Event -->
+                    <article class="event-card featured" data-type="summits" data-region="india">
+                        <div class="event-badge">Featured</div>
+                        <div class="event-image">
+                            <img src="assets/images/events/heat-summit-2025.jpg" alt="Urban Heat Resilience Summit 2025" loading="lazy">
+                            <div class="event-date-overlay">
+                                <span class="date-day">15</span>
+                                <span class="date-month">JUN</span>
+                            </div>
+                        </div>
+                        <div class="event-content">
+                            <div class="event-meta">
+                                <span class="event-type">Summit</span>
+                                <span class="event-location">New Delhi, India</span>
+                            </div>
+                            <h3 class="event-title">Urban Heat Resilience Summit 2025</h3>
+                            <p class="event-description">India's premier gathering of policymakers, researchers, and practitioners working on urban heat resilience. Features panel discussions, workshops, and networking opportunities.</p>
+                            <div class="event-organizer">
+                                <img src="assets/images/partners/niua.svg" alt="NIUA" class="organizer-logo">
+                                <span class="organizer-name">NIUA & HT Parekh Foundation</span>
+                            </div>
+                            <div class="event-stats">
+                                <span class="stat">500+ Attendees</span>
+                                <span class="stat">2 Days</span>
+                                <span class="stat">15+ Sessions</span>
+                            </div>
+                            <div class="event-actions">
+                                <a href="#" class="btn btn-primary">Register Now</a>
+                                <button class="btn btn-ghost add-calendar" data-event="summit-2025">Add to Calendar</button>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- Regular Events -->
+                    <article class="event-card" data-type="webinars" data-region="global">
+                        <div class="event-image">
+                            <img src="assets/images/events/who-webinar.jpg" alt="WHO Heat-Health Webinar" loading="lazy">
+                            <div class="event-date-overlay">
+                                <span class="date-day">22</span>
+                                <span class="date-month">JUN</span>
+                            </div>
+                        </div>
+                        <div class="event-content">
+                            <div class="event-meta">
+                                <span class="event-type">Webinar</span>
+                                <span class="event-location">Online</span>
+                            </div>
+                            <h3 class="event-title">Heat-Health Early Warning Systems</h3>
+                            <p class="event-description">Learn about implementing effective early warning systems for heat-health risks in urban environments.</p>
+                            <div class="event-organizer">
+                                <img src="assets/images/partners/who-ghhin.svg" alt="WHO" class="organizer-logo">
+                                <span class="organizer-name">WHO Global Heat Health Information Network</span>
+                            </div>
+                            <div class="event-actions">
+                                <a href="#" class="btn btn-primary">Join Webinar</a>
+                                <button class="btn btn-ghost add-calendar" data-event="who-webinar">Add to Calendar</button>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <article class="event-card" data-type="workshops" data-region="south-asia">
+                        <div class="event-image">
+                            <img src="assets/images/events/dhaka-workshop.jpg" alt="Dhaka Heat Action Workshop" loading="lazy">
+                            <div class="event-date-overlay">
+                                <span class="date-day">28</span>
+                                <span class="date-month">JUN</span>
+                            </div>
+                        </div>
+                        <div class="event-content">
+                            <div class="event-meta">
+                                <span class="event-type">Workshop</span>
+                                <span class="event-location">Dhaka, Bangladesh</span>
+                            </div>
+                            <h3 class="event-title">Community-Led Heat Action Planning</h3>
+                            <p class="event-description">Hands-on workshop for developing heat action plans with community participation and local knowledge integration.</p>
+                            <div class="event-organizer">
+                                <img src="assets/images/partners/practical-action.svg" alt="Practical Action" class="organizer-logo">
+                                <span class="organizer-name">Practical Action South Asia</span>
+                            </div>
+                            <div class="event-actions">
+                                <a href="#" class="btn btn-primary">Apply Now</a>
+                                <button class="btn btn-ghost add-calendar" data-event="dhaka-workshop">Add to Calendar</button>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <article class="event-card" data-type="grants" data-region="global">
+                        <div class="event-content grant-card">
+                            <div class="grant-header">
+                                <div class="grant-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/>
+                                    </svg>
+                                </div>
+                                <div class="deadline-info">
+                                    <span class="deadline-label">Deadline</span>
+                                    <span class="deadline-date">July 15, 2025</span>
+                                </div>
+                            </div>
+                            <h3 class="event-title">Climate Resilience Innovation Fund</h3>
+                            <p class="event-description">Open call for innovative heat resilience solutions. Up to $500K available for pilot projects in urban settings.</p>
+                            <div class="grant-details">
+                                <div class="grant-amount">Up to $500,000</div>
+                                <div class="grant-focus">Heat Innovation • Urban Solutions</div>
+                            </div>
+                            <div class="event-organizer">
+                                <span class="organizer-name">Global Climate Innovation Fund</span>
+                            </div>
+                            <div class="event-actions">
+                                <a href="#" class="btn btn-primary">Apply Now</a>
+                                <button class="btn btn-ghost">Download Guidelines</button>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <article class="event-card" data-type="summits" data-region="global">
+                        <div class="event-image">
+                            <img src="assets/images/events/cooling-summit.jpg" alt="Global Cooling Summit" loading="lazy">
+                            <div class="event-date-overlay">
+                                <span class="date-day">05</span>
+                                <span class="date-month">JUL</span>
+                            </div>
+                        </div>
+                        <div class="event-content">
+                            <div class="event-meta">
+                                <span class="event-type">Summit</span>
+                                <span class="event-location">Singapore</span>
+                            </div>
+                            <h3 class="event-title">Global Cooling Innovation Summit</h3>
+                            <p class="event-description">Explore breakthrough cooling technologies and financing mechanisms for sustainable urban cooling solutions.</p>
+                            <div class="event-organizer">
+                                <img src="assets/images/partners/global-cooling.svg" alt="Global Cooling Alliance" class="organizer-logo">
+                                <span class="organizer-name">Global Cooling Alliance</span>
+                            </div>
+                            <div class="event-actions">
+                                <a href="#" class="btn btn-primary">Register</a>
+                                <button class="btn btn-ghost add-calendar" data-event="cooling-summit">Add to Calendar</button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                
+                <!-- Load More -->
+                <div class="load-more-section">
+                    <button class="btn btn-outline load-more-btn">Load More Events</button>
+                    <p class="events-count">Showing 5 of 47 events</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Calendar View (Hidden by default) -->
+        <section class="calendar-view hidden" id="calendar-view">
+            <div class="container">
+                <div class="calendar-container">
+                    <div class="calendar-header">
+                        <button class="calendar-nav prev" aria-label="Previous month">‹</button>
+                        <h3 class="calendar-title">June 2025</h3>
+                        <button class="calendar-nav next" aria-label="Next month">›</button>
+                    </div>
+                    <div class="calendar-grid">
+                        <!-- Calendar will be generated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Event Submission CTA -->
+        <section class="submit-event-cta">
+            <div class="container">
+                <div class="cta-content">
+                    <h2 class="cta-title">Host an Event?</h2>
+                    <p class="cta-description">Share your heat resilience event with our global community of practitioners, researchers, and policymakers.</p>
+                    <a href="mailto:events@beattheheat.global?subject=Event Submission" class="btn btn-primary">Submit Your Event</a>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-main">
+                    <div class="footer-brand">
+                        <a href="index.html" class="brand-link">
+                            <img src="assets/images/flame-icon.svg" alt="" class="brand-icon" aria-hidden="true">
+                            <span class="brand-text">Beat The Heat</span>
+                        </a>
+                        <p class="footer-mission">
+                            More than a slogan, Beat The Heat is India's orchestration effort to protect the most vulnerable from extreme heat—through science, finance, design, and local leadership.
+                        </p>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <div class="link-group">
+                            <h3 class="link-group-title">Platform</h3>
+                            <ul class="link-list">
+                                <li><a href="events.html">Events</a></li>
+                                <li><a href="funding.html">Funding Hub</a></li>
+                                <li><a href="resources.html">Resources</a></li>
+                                <li><a href="early-warning.html">Early Warning</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="link-group">
+                            <h3 class="link-group-title">Community</h3>
+                            <ul class="link-list">
+                                <li><a href="forum.html">Forum</a></li>
+                                <li><a href="stories.html">Impact Stories</a></li>
+                                <li><a href="partners.html">Partners</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="link-group">
+                            <h3 class="link-group-title">About</h3>
+                            <ul class="link-list">
+                                <li><a href="about.html">Our Mission</a></li>
+                                <li><a href="team.html">Team</a></li>
+                                <li><a href="privacy.html">Privacy Policy</a></li>
+                                <li><a href="terms.html">Terms of Use</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <div class="footer-partners">
+                        <p class="partners-label">Anchored by</p>
+                        <img src="assets/images/partners/ht-parekh-white.svg" alt="HT Parekh Foundation" class="partner-logo">
+                        <span class="partners-separator">•</span>
+                        <p class="partners-label">Orchestrated by</p>
+                        <img src="assets/images/partners/practical-action-white.svg" alt="Practical Action" class="partner-logo">
+                    </div>
+                    
+                    <div class="footer-social">
+                        <a href="https://twitter.com/beattheheatglob" class="social-link" aria-label="Follow us on Twitter">
+                            <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                        </a>
+                        <a href="https://linkedin.com/company/beattheheat" class="social-link" aria-label="Follow us on LinkedIn">
+                            <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                        <a href="mailto:hello@beattheheat.global" class="social-link" aria-label="Email us">
+                            <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-.904.732-1.636 1.636-1.636h.001c.379 0 .745.133 1.028.375L12 11.582 21.335 4.196c.283-.242.649-.375 1.028-.375h.001c.904 0 1.636.732 1.636 1.636z"/>
+                            </svg>
+                        </a>
+                    </div>
+                    
+                    <p class="footer-copyright">
+                        © 2025 Beat The Heat. All rights reserved.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/events.js"></script>
+    <script src="assets/js/analytics.js"></script>
+</body>
+</html>
