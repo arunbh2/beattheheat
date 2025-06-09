@@ -1,29 +1,25 @@
-# beattheheat
 beattheheat.global/
-├── index.html                 (Homepage)
-├── events.html                (Global Events Aggregator)
-├── funding.html               (Funding Hub)
-├── resources.html             (Knowledge Commons)
-├── early-warning.html         (Early Warning Systems)
-├── research.html              (Research & R&D)
-├── blue-green.html            (Blue-Green Infrastructure)
-├── alliance.html              (Global Alliance Explorer)
-├── heat-risk.html             (Heat Risk Management)
-├── stories.html               (Impact Stories)
-├── about.html                 (About & Mission)
-├── contact.html               (Contact)
-├── forum.html                 (Community Forum - Discourse mockup)
+├── index.html
+├── events.html
+├── funding.html
+├── resources.html
+├── early-warning.html
+├── research.html
+├── blue-green.html
+├── alliance.html
+├── heat-risk.html
+├── stories.html
+├── about.html
+├── contact.html
+├── forum.html
 ├── assets/
 │   ├── css/
-│   │   ├── tokens.css         (Design tokens, colors)
-│   │   ├── main.css           (Base styles)
-│   │   └── components.css     (Buttons, cards, nav)
+│   │   ├── tokens.css
+│   │   ├── main.css
+│   │   └── components.css
 │   ├── js/
-│   │   ├── main.js            (Core JS: nav, modals)
-│   │   └── carousel.js        (Carousels, sliders)
+│   │   ├── main.js
+│   │   └── carousel.js
 │   ├── images/
-│   │   ├── icons/             (SVG icons)
-│   │   ├── partners/          (Partner logos)
-│   │   ├── impact/            (Photos for stories)
 │   └── fonts/
-└── README.md                  (GitHub Pages setup + notes)
+└── README.md
