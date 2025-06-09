@@ -1,44 +1,663 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Community Forum – Beat The Heat</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <link rel="stylesheet" href="assets/css/main.css">
-  <link rel="stylesheet" href="assets/css/components.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Forum - Beat The Heat</title>
+    <meta name="description" content="Join the global community working on heat resilience. Share knowledge, ask questions, and collaborate on solutions for extreme heat challenges.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;600&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/tokens.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/forum.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
 </head>
 <body>
-  <header class="navbar">
-    <nav>
-      <a href="index.html" class="logo">BEAT THE HEAT</a>
-      <ul>
-        <li><a href="resources.html">Knowledge Commons</a></li>
-        <li><a href="funding.html">Funding Hub</a></li>
-        <li><a href="early-warning.html">Early Warning</a></li>
-        <li><a href="forum.html">Forum</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-  <main>
-    <h1>Community Forum</h1>
-    <p>This forum is powered by Discourse. <br>
-    To join the live community, visit <a href="https://community.beattheheat.global" target="_blank">community.beattheheat.global</a></p>
-    <div class="discourse-mockup">
-      <h2>Latest Topics</h2>
-      <ul>
-        <li><strong>How are cities using early warnings?</strong> – 17 replies</li>
-        <li><strong>Cool roof pilot learnings</strong> – 9 replies</li>
-        <li><strong>Funding call: blue-green infrastructure</strong> – 5 replies</li>
-        <li><strong>Share your story: surviving 2024 heatwave</strong> – 12 replies</li>
-      </ul>
-      <p><a href="https://community.beattheheat.global" class="cta-primary" target="_blank">Visit Real Forum</a></p>
+    <!-- Skip to content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Header -->
+    <header class="header" role="banner">
+        <nav class="nav-container" role="navigation" aria-label="Main navigation">
+            <div class="nav-brand">
+                <a href="index.html" class="brand-link">
+                    <img src="assets/images/flame-icon.svg" alt="" class="brand-icon" aria-hidden="true">
+                    <span class="brand-text">Beat The Heat</span>
+                </a>
+            </div>
+            
+            <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <div class="nav-menu" id="nav-menu">
+                <ul class="nav-list" role="menubar">
+                    <li class="nav-item" role="none">
+                        <a href="index.html" class="nav-link" role="menuitem">Home</a>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a href="events.html" class="nav-link" role="menuitem">Events</a>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a href="funding.html" class="nav-link" role="menuitem">Funding Hub</a>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a href="resources.html" class="nav-link" role="menuitem">Resources</a>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a href="early-warning.html" class="nav-link" role="menuitem">Early Warning</a>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a href="forum.html" class="nav-link active" role="menuitem" aria-current="page">Community</a>
+                    </li>
+                </ul>
+                
+                <div class="nav-cta">
+                    <a href="index.html#big-bet" class="btn btn-primary">Join Funders Circle</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Heat Emergency Ribbon -->
+    <div class="heat-ribbon" role="alert" aria-live="polite" id="heat-ribbon">
+        <div class="ribbon-content">
+            <span class="flame-icon" aria-hidden="true">🔥</span>
+            <span class="ribbon-text">17 States on Red Alert | 42°C Real-Feel in Nagpur</span>
+            <a href="index.html#heat-map" class="ribbon-link">View Live Heat Map ›</a>
+        </div>
     </div>
-  </main>
-  <footer>
-    <p>Anchored by Practical Action, Seeded by HT Parekh Foundation.</p>
-  </footer>
-  <script src="assets/js/main.js"></script>
+    
+    <main id="main-content" role="main">
+        <!-- Forum Header -->
+        <section class="forum-header">
+            <div class="container">
+                <div class="forum-nav">
+                    <a href="index.html" class="breadcrumb-link">Home</a>
+                    <span class="breadcrumb-separator">›</span>
+                    <span class="breadcrumb-current">Community Forum</span>
+                </div>
+                
+                <div class="forum-intro">
+                    <h1 class="forum-title">Heat Resilience Community</h1>
+                    <p class="forum-description">Your backstage pass to India's heat-resilience movement. Share knowledge, collaborate on solutions, and connect with practitioners worldwide.</p>
+                    
+                    <div class="forum-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">2,847</span>
+                            <span class="stat-label">Members</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">1,203</span>
+                            <span class="stat-label">Topics</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">5,678</span>
+                            <span class="stat-label">Posts</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">89</span>
+                            <span class="stat-label">Online Now</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="forum-actions">
+                    <button class="btn btn-primary new-topic-btn">+ New Topic</button>
+                    <div class="forum-search">
+                        <input type="search" placeholder="Search discussions..." class="search-input">
+                        <button class="search-btn" aria-label="Search">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Pledge Banner -->
+        <section class="pledge-banner">
+            <div class="container">
+                <div class="pledge-content">
+                    <span class="pledge-text">💡 Share one data-point a month → unlock Heat Connector badge</span>
+                    <button class="btn btn-ghost btn-sm pledge-btn">Make Pledge</button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Categories -->
+        <section class="categories-section">
+            <div class="container">
+                <div class="forum-layout">
+                    <div class="categories-grid">
+                        <div class="category-card policy">
+                            <div class="category-header">
+                                <div class="category-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                    </svg>
+                                </div>
+                                <div class="category-info">
+                                    <h3 class="category-title">Policy & Governance</h3>
+                                    <p class="category-description">HAP templates, legal frameworks, and governance discussions</p>
+                                </div>
+                                <div class="category-stats">
+                                    <span class="topic-count">47 topics</span>
+                                </div>
+                            </div>
+                            <div class="category-content">
+                                <div class="recent-topics">
+                                    <div class="topic-item">
+                                        <a href="#" class="topic-title">NDMA 2024 guidelines Q&A</a>
+                                        <div class="topic-meta">
+                                            <span class="topic-replies">23 replies</span>
+                                            <span class="topic-time">2h ago</span>
+                                        </div>
+                                    </div>
+                                    <div class="topic-item">
+                                        <a href="#" class="topic-title">State-level disaster recognition process</a>
+                                        <div class="topic-meta">
+                                            <span class="topic-replies">15 replies</span>
+                                            <span class="topic-time">5h ago</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="category-card tech">
+                            <div class="category-header">
+                                <div class="category-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M13 3v6h8l-10 12V11H3l10-8z"/>
+                                    </svg>
+                                </div>
+                                <div class="category-info">
+                                    <h3 class="category-title">Early Warning & Tech</h3>
+                                    <p class="category-description">Sensor networks, alert systems, and technical implementations</p>
+                                </div>
+                                <div class="category-stats">
+                                    <span class="topic-count">62 topics</span>
+                                </div>
+                            </div>
+                            <div class="category-content">
+                                <div class="recent-topics">
+                                    <div class="topic-item">
+                                        <a href="#" class="topic-title">Low-cost SMS gateway integration?</a>
+                                        <div class="topic-meta">
+                                            <span class="topic-replies">31 replies</span>
+                                            <span class="topic-time">1h ago</span>
+                                        </div>
+                                    </div>
+                                    <div class="topic-item">
+                                        <a href="#" class="topic-title">IoT temperature sensors for slums</a>
+                                        <div class="topic-meta">
+                                            <span class="topic-replies">18 replies</span>
+                                            <span class="topic-time">3h ago</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="category-card finance">
+                            <div class="category-header">
+                                <div class="category-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/>
+                                    </svg>
+                                </div>
+                                <div class="category-info">
+                                    <h3 class="category-title">Finance & Big Bet</h3>
+                                    <p class="category-description">Funding opportunities, co-investment, and financial mechanisms</p>
+                                </div>
+                                <div class="category-stats">
+                                    <span class="topic-count">35 topics</span>
+                                </div>
+                            </div>
+                            <div class="category-content">
+                                <div class="recent-topics">
+                                    <div class="topic-item">
+                                        <a href="#" class="topic-title">How catalytic debt unlocks cooling corridors</a>
+                                        <div class="topic-meta">
+                                            <span class="topic-replies">42 replies</span>
+                                            <span class="topic-time">30m ago</span>
+                                        </div>
+                                    </div>
+                                    <div class="topic-item">
+                                        <a href="#" class="topic-title">Climate bonds for urban heat infrastructure</a>
+                                        <div class="topic-meta">
+                                            <span class="topic-replies">27 replies</span>
+                                            <span class="topic-time">4h ago</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="category-card community">
+                            <div class="category-header">
+                                <div class="category-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M16 4c0-1.11-.89-2-2-2s-2 .89-2 2 .89 2 2 2 2-.89 2-2zm4 18v-6h2.5l-2.54-7.63A3.011 3.011 0 0 0 17.22 7c-.41 0-.77.13-1.08.35L14.5 8.5c-.35.18-.69.37-1 .59V7.5c0-.83-.67-1.5-1.5-1.5S10.5 6.67 10.5 7.5v3.5L9 10l-3 1.5v9.5h2v-9l1.5-.75L10.5 13v7H12v-6.5l1.5-3L15 12v8h5z"/>
+                                    </svg>
+                                </div>
+                                <div class="category-info">
+                                    <h3 class="category-title">Front-line Stories</h3>
+                                    <p class="category-description">Lived experiences and community-led solutions</p>
+                                </div>
+                                <div class="category-stats">
+                                    <span class="topic-count">89 topics</span>
+                                </div>
+                            </div>
+                            <div class="category-content">
+                                <div class="recent-topics">
+                                    <div class="topic-item">
+                                        <a href="#" class="topic-title">Street vendors: coping hacks</a>
+                                        <div class="topic-meta">
+                                            <span class="topic-replies">56 replies</span>
+                                            <span class="topic-time">45m ago</span>
+                                        </div>
+                                    </div>
+                                    <div class="topic-item">
+                                        <a href="#" class="topic-title">Construction workers: shade solutions that work</a>
+                                        <div class="topic-meta">
+                                            <span class="topic-replies">34 replies</span>
+                                            <span class="topic-time">2h ago</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="category-card research">
+                            <div class="category-header">
+                                <div class="category-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z"/>
+                                    </svg>
+                                </div>
+                                <div class="category-info">
+                                    <h3 class="category-title">Research & R&D</h3>
+                                    <p class="category-description">Studies, data sharing, and research collaborations</p>
+                                </div>
+                                <div class="category-stats">
+                                    <span class="topic-count">74 topics</span>
+                                </div>
+                            </div>
+                            <div class="category-content">
+                                <div class="recent-topics">
+                                    <div class="topic-item">
+                                        <a href="#" class="topic-title">Need collaborators: heat-health surveillance in Patna</a>
+                                        <div class="topic-meta">
+                                            <span class="topic-replies">19 replies</span>
+                                            <span class="topic-time">1h ago</span>
+                                        </div>
+                                    </div>
+                                    <div class="topic-item">
+                                        <a href="#" class="topic-title">Urban heat island mapping methodology</a>
+                                        <div class="topic-meta">
+                                            <span class="topic-replies">28 replies</span>
+                                            <span class="topic-time">6h ago</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Sidebar -->
+                    <aside class="forum-sidebar">
+                        <div class="sidebar-section">
+                            <h4 class="sidebar-title">Welcome!</h4>
+                            <div class="welcome-message">
+                                <p>This forum is your backstage pass to India's heat-resilience movement.</p>
+                                <button class="btn btn-primary btn-sm">Join Community</button>
+                            </div>
+                        </div>
+                        
+                        <div class="sidebar-section">
+                            <h4 class="sidebar-title">Upcoming Events</h4>
+                            <div class="upcoming-events">
+                                <div class="event-item">
+                                    <div class="event-date">
+                                        <span class="day">15</span>
+                                        <span class="month">JUN</span>
+                                    </div>
+                                    <div class="event-info">
+                                        <a href="events.html" class="event-link">Heat Resilience Summit</a>
+                                        <span class="event-location">New Delhi</span>
+                                    </div>
+                                </div>
+                                <div class="event-item">
+                                    <div class="event-date">
+                                        <span class="day">22</span>
+                                        <span class="month">JUN</span>
+                                    </div>
+                                    <div class="event-info">
+                                        <a href="events.html" class="event-link">WHO Heat-Health Webinar</a>
+                                        <span class="event-location">Online</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="events.html" class="view-all-link">View all events →</a>
+                        </div>
+                        
+                        <div class="sidebar-section">
+                            <h4 class="sidebar-title">Top Contributors</h4>
+                            <div class="contributors-list">
+                                <div class="contributor-item">
+                                    <div class="contributor-avatar">
+                                        <img src="assets/images/avatars/avatar-1.jpg" alt="Dr. Priya Sharma">
+                                    </div>
+                                    <div class="contributor-info">
+                                        <span class="contributor-name">Dr. Priya Sharma</span>
+                                        <span class="contributor-role">Climate Researcher</span>
+                                    </div>
+                                    <div class="contributor-badge heat-connector" title="Heat Connector">🔥</div>
+                                </div>
+                                <div class="contributor-item">
+                                    <div class="contributor-avatar">
+                                        <img src="assets/images/avatars/avatar-2.jpg" alt="Rajesh Kumar">
+                                    </div>
+                                    <div class="contributor-info">
+                                        <span class="contributor-name">Rajesh Kumar</span>
+                                        <span class="contributor-role">Municipal Officer</span>
+                                    </div>
+                                    <div class="contributor-badge policy-expert" title="Policy Expert">⭐</div>
+                                </div>
+                                <div class="contributor-item">
+                                    <div class="contributor-avatar">
+                                        <img src="assets/images/avatars/avatar-3.jpg" alt="Sarah Chen">
+                                    </div>
+                                    <div class="contributor-info">
+                                        <span class="contributor-name">Sarah Chen</span>
+                                        <span class="contributor-role">Impact Investor</span>
+                                    </div>
+                                    <div class="contributor-badge funding-specialist" title="Funding Specialist">💰</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="sidebar-section">
+                            <h4 class="sidebar-title">Forum Guidelines</h4>
+                            <div class="guidelines">
+                                <ul class="guidelines-list">
+                                    <li>Center vulnerable communities in discussions</li>
+                                    <li>Share evidence-based insights</li>
+                                    <li>Foster collaborative solutions</li>
+                                    <li>Respect diverse perspectives</li>
+                                </ul>
+                                <a href="#" class="view-full-guidelines">View full guidelines →</a>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Recent Activity -->
+        <section class="recent-activity">
+            <div class="container">
+                <div class="activity-header">
+                    <h3 class="activity-title">Latest Activity</h3>
+                    <div class="activity-filters">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="trending">Trending</button>
+                        <button class="filter-btn" data-filter="solved">Solved</button>
+                        <button class="filter-btn" data-filter="unanswered">Unanswered</button>
+                    </div>
+                </div>
+                
+                <div class="activity-list">
+                    <div class="topic-row">
+                        <div class="topic-status">
+                            <div class="status-indicator hot"></div>
+                        </div>
+                        <div class="topic-info">
+                            <h4 class="topic-title"><a href="#">Emergency cooling centers: legal framework needed</a></h4>
+                            <div class="topic-meta">
+                                <span class="category-tag policy">Policy & Governance</span>
+                                <span class="topic-starter">Started by <strong>amit.patel</strong></span>
+                                <span class="topic-time">3 hours ago</span>
+                            </div>
+                        </div>
+                        <div class="topic-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">24</span>
+                                <span class="stat-label">replies</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">147</span>
+                                <span class="stat-label">views</span>
+                            </div>
+                        </div>
+                        <div class="topic-last-post">
+                            <div class="last-post-avatar">
+                                <img src="assets/images/avatars/avatar-4.jpg" alt="Last post by maya.singh">
+                            </div>
+                            <div class="last-post-info">
+                                <span class="last-post-user">maya.singh</span>
+                                <span class="last-post-time">23m ago</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="topic-row">
+                        <div class="topic-status">
+                            <div class="status-indicator solved"></div>
+                        </div>
+                        <div class="topic-info">
+                            <h4 class="topic-title"><a href="#">Best practices for community heat education campaigns</a></h4>
+                            <div class="topic-meta">
+                                <span class="category-tag community">Front-line Stories</span>
+                                <span class="topic-starter">Started by <strong>community.leader</strong></span>
+                                <span class="topic-time">1 day ago</span>
+                            </div>
+                        </div>
+                        <div class="topic-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">18</span>
+                                <span class="stat-label">replies</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">289</span>
+                                <span class="stat-label">views</span>
+                            </div>
+                        </div>
+                        <div class="topic-last-post">
+                            <div class="last-post-avatar">
+                                <img src="assets/images/avatars/avatar-5.jpg" alt="Last post by dr.sharma">
+                            </div>
+                            <div class="last-post-info">
+                                <span class="last-post-user">dr.sharma</span>
+                                <span class="last-post-time">2h ago</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="topic-row">
+                        <div class="topic-status">
+                            <div class="status-indicator new"></div>
+                        </div>
+                        <div class="topic-info">
+                            <h4 class="topic-title"><a href="#">Seeking partners for heat resilience research in Rajasthan</a></h4>
+                            <div class="topic-meta">
+                                <span class="category-tag research">Research & R&D</span>
+                                <span class="topic-starter">Started by <strong>research.institute</strong></span>
+                                <span class="topic-time">5 hours ago</span>
+                            </div>
+                        </div>
+                        <div class="topic-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">7</span>
+                                <span class="stat-label">replies</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">92</span>
+                                <span class="stat-label">views</span>
+                            </div>
+                        </div>
+                        <div class="topic-last-post">
+                            <div class="last-post-avatar">
+                                <img src="assets/images/avatars/avatar-6.jpg" alt="Last post by tech.innovator">
+                            </div>
+                            <div class="last-post-info">
+                                <span class="last-post-user">tech.innovator</span>
+                                <span class="last-post-time">1h ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="load-more-topics">
+                    <button class="btn btn-outline">Load More Topics</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-main">
+                    <div class="footer-brand">
+                        <a href="index.html" class="brand-link">
+                            <img src="assets/images/flame-icon.svg" alt="" class="brand-icon" aria-hidden="true">
+                            <span class="brand-text">Beat The Heat</span>
+                        </a>
+                        <p class="footer-mission">
+                            More than a slogan, Beat The Heat is India's orchestration effort to protect the most vulnerable from extreme heat—through science, finance, design, and local leadership.
+                        </p>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <div class="link-group">
+                            <h3 class="link-group-title">Platform</h3>
+                            <ul class="link-list">
+                                <li><a href="events.html">Events</a></li>
+                                <li><a href="funding.html">Funding Hub</a></li>
+                                <li><a href="resources.html">Resources</a></li>
+                                <li><a href="early-warning.html">Early Warning</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="link-group">
+                            <h3 class="link-group-title">Community</h3>
+                            <ul class="link-list">
+                                <li><a href="forum.html">Forum</a></li>
+                                <li><a href="stories.html">Impact Stories</a></li>
+                                <li><a href="partners.html">Partners</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="link-group">
+                            <h3 class="link-group-title">About</h3>
+                            <ul class="link-list">
+                                <li><a href="about.html">Our Mission</a></li>
+                                <li><a href="team.html">Team</a></li>
+                                <li><a href="privacy.html">Privacy Policy</a></li>
+                                <li><a href="terms.html">Terms of Use</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <div class="footer-partners">
+                        <p class="partners-label">Anchored by</p>
+                        <img src="assets/images/partners/ht-parekh-white.svg" alt="HT Parekh Foundation" class="partner-logo">
+                        <span class="partners-separator">•</span>
+                        <p class="partners-label">Orchestrated by</p>
+                        <img src="assets/images/partners/practical-action-white.svg" alt="Practical Action" class="partner-logo">
+                    </div>
+                    
+                    <div class="footer-social">
+                        <a href="https://twitter.com/beattheheatglob" class="social-link" aria-label="Follow us on Twitter">
+                            <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                        </a>
+                        <a href="https://linkedin.com/company/beattheheat" class="social-link" aria-label="Follow us on LinkedIn">
+                            <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                        <a href="mailto:hello@beattheheat.global" class="social-link" aria-label="Email us">
+                            <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-.904.732-1.636 1.636-1.636h.001c.379 0 .745.133 1.028.375L12 11.582 21.335 4.196c.283-.242.649-.375 1.028-.375h.001c.904 0 1.636.732 1.636 1.636z"/>
+                            </svg>
+                        </a>
+                    </div>
+                    
+                    <p class="footer-copyright">
+                        © 2025 Beat The Heat. All rights reserved.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- New Topic Modal -->
+    <div id="new-topic-modal" class="modal" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Start a New Discussion</h2>
+                <button class="modal-close" aria-label="Close modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="new-topic-form" class="topic-form">
+                    <div class="form-group">
+                        <label for="topic-category">Category</label>
+                        <select id="topic-category" name="category" required>
+                            <option value="">Select a category</option>
+                            <option value="policy">Policy & Governance</option>
+                            <option value="tech">Early Warning & Tech</option>
+                            <option value="finance">Finance & Big Bet</option>
+                            <option value="community">Front-line Stories</option>
+                            <option value="research">Research & R&D</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="topic-title">Title</label>
+                        <input type="text" id="topic-title" name="title" placeholder="What's your discussion about?" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="topic-content">Content</label>
+                        <textarea id="topic-content" name="content" placeholder="Share your thoughts, questions, or insights..." rows="8" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="notify" checked>
+                            <span class="checkmark"></span>
+                            Notify me of replies
+                        </label>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-ghost cancel-btn">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Create Topic</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- JavaScript -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/forum.js"></script>
+    <script src="assets/js/analytics.js"></script>
 </body>
 </html>
